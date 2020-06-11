@@ -22,7 +22,12 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
-
+    /**
+     * The path to the "home" route for your application.
+     *
+     * @var string
+     */
+    public const INDEX = '/products';
     /**
      * Define your route model bindings, pattern filters, etc.
      *
