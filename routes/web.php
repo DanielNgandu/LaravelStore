@@ -28,8 +28,8 @@ Route::post('/product/store', 'ProductsController@store')->name('store.product')
 //show
 Route::get('/product/show/{id}', 'ProductsController@show')->name('show.product');
 //edit
-Route::get('/product/edit/{id}', 'ProductsController@edit')->name('edit.product');
+Route::post('/product/edit/{id}', 'ProductsController@edit')->name('edit.product');
 //update
-Route::post('/product/update/{id}', 'ProductsController@update')->name('update.product');
+Route::get('/product/update/{id}', 'ProductsController@update')->name('update.product');
 //delete
 Route::get('/product/delete/{id}', 'ProductsController@destroy')->name('delete.product');

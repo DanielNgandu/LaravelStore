@@ -88,11 +88,15 @@ class ProductsController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
         //
+        $product = Product::findOrFail($id);
+
+        //redirect to new page with success messages
+        return view('products.show',["products"=>$product]);
     }
 
     /**
@@ -104,7 +108,7 @@ class ProductsController extends Controller
     {
         //fetch product we want to delete by id
 
-        $product = DB::table('products')->where('id',$id);
+        $product = DB::table('products')->where('id',$id)->first();
 //        dd($product);
         return view('products.edit',['products'=>$product]);
 
@@ -120,7 +124,30 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $product = Product::findOrFail($id);
+        $product['product_name'] = $request->name;
+        $product['product_code'] = $request->name;
+        $product['details'] = $request->name;
+        $product['product_name'] = $request->name;
+        //check if request params have image
+        //image upload logic here
+        if($request->hasFile('image')){
+            $date = date('dmy');
+            $imageName = 'D'.$date.'T'.time().'.'.$request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+            $product['logo']= $imageName;
+        };
+
+        //Logic end: save request params to our object
+        $product = DB::table('products')->where('id',$id)->update($product);
+
+
+        //redirect to new page with success messages
+        return redirect('/products')
+
+            ->with('success','You have successfully Updated  Product.')
+
+            ->with('image',$imageName);
+
     }
 
     /**
