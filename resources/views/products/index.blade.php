@@ -15,8 +15,25 @@
                 <div class="col-9">
                     <div class="pull-left">
                         <h1>Product List</h1>
-                        <h2>Hoverable Dark Table</h2>
-                        <p>The .table-hover class adds a hover effect (grey background color) on table rows:</p>
+                        <h2>----------------</h2>
+                        <p></p>
+                        @if(Session::has('success'))
+
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+                                {{ Session::get('success') }}
+
+                                @php
+
+                                    Session::forget('success');
+
+                                @endphp
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        @endif
                         <table class="table table-dark table-hover table-responsive d-print-table">
                             <thead>
                             <tr>
@@ -32,7 +49,7 @@
                             @foreach($products as $product)
                             <tr>
 
-                                <td>1</td>
+                                <td>{{$product->id}}</td>
                                 <td>
                                     <img
                                         src="{{url($product->logo)}}"
@@ -42,9 +59,9 @@
                                 <td>{{$product->product_code}}</td>
                                 <td>{{$product->details}}</td>
                                 <td>
-                                    <a href="edit/{{$product->id}}" class="btn-primary btn-sm">Edit</a>
-                                    <a href="view/{{$product->id}}" class="btn-success btn-sm">View</a>
-                                    <a href="delete/{{$product->id}}" class="btn-danger btn-sm">Delete</a>
+                                    <a href="/product/edit/{{$product->id}}" class="btn-primary btn-sm">Edit</a>
+                                    <a href="/product/show/{{$product->id}}" class="btn-success btn-sm">View</a>
+                                    <a href="/product/delete/{{$product->id}}" class="btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -99,33 +99,46 @@ class ProductsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        //fetch product we want to delete by id
+
+        $product = DB::table('products')->where('id',$id);
+//        dd($product);
+        return view('products.edit',['products'=>$product]);
+
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
+        $product = Product::findOrFail($id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
         //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        //redirect to new page with success messages
+        return redirect('/products')
+
+            ->with('success','You have successfully deleted a  Product.')
+            ;
     }
 }
