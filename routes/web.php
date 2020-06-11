@@ -21,3 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products', 'ProductsController@index')->name('products');
+//used to create a product
+Route::get('/product/create', 'ProductsController@create')->name('create.product');
+//used to store post
+Route::post('/product/store', 'ProductsController@store')->name('store.product');

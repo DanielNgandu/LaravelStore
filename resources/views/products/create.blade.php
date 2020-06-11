@@ -5,16 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Add New Product') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{route('store.product')}}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <label for="name" class="col-4 col-form-label ">{{ __('Name') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
@@ -26,12 +26,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="text" class="col-4 col-form-label">{{ __('Code') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <div class="col-12">
+                                    <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('email') }}" required autocomplete="email">
 
-                                    @error('email')
+                                    @error('code')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,33 +40,41 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="text" class="col-4 col-form-label">{{ __('Description') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-12">
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Product details"></textarea>
 
-                                    @error('password')
+                                    @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="form-group row ">
+                                <div class="custom-file">
+                                    <label class="custom-file-label " for="customFile">Choose file</label>
+                                    <input type="file" class="custom-file-input" id="image" name="image">
+                                    @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
+
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-lg btn-primary">
+                                        {{ __('Save') }}
+                                    </button> |
+                                    <button type="reset" class="btn btn-lg btn-danger">
+                                        {{ __('Clear') }}
                                     </button>
                                 </div>
+
                             </div>
                         </form>
                     </div>

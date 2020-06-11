@@ -54,11 +54,10 @@
                 </div>
                 <div class="col-3">
                     <div class="">
-                        <a href="#" type="button" class="btn-lg btn-primary">Add New Product</a>
+                        <a href="{{route('create.product')}}" type="button" class="btn-lg btn-primary">Add New Product</a>
                     </div>
                 </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection
