@@ -3,8 +3,9 @@
 @section('content')
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1>Welcome</h1>
+            <div class="container align-content-center">
+                <h1 class="text-center">Welcome</h1>
+                <h3 class="text-center text-uppercase">Laravel Store</h3>
                 <p></p>
             </div>
         </div>
@@ -28,22 +29,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($products as $product)
                             <tr>
+
                                 <td>1</td>
                                 <td>
                                     <img
-                                        src="{{url('/uploads/T1591473883.jpeg')}}"
+                                        src="{{url($product->logo)}}"
                                         alt="image here" class="img-thumbnail" style="height: 5em;width: 5em">
                                 </td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
+                                <td>{{$product->product_name}}</td>
+                                <td>{{$product->product_code}}</td>
+                                <td>{{$product->details}}</td>
                                 <td>
-                                    <a href="edit/id" class="btn-primary btn-sm">Edit</a>
-                                    <a href="view/id" class="btn-success btn-sm">View</a>
-                                    <a href="delete/id" class="btn-danger btn-sm">Delete</a>
+                                    <a href="edit/{{$product->id}}" class="btn-primary btn-sm">Edit</a>
+                                    <a href="view/{{$product->id}}" class="btn-success btn-sm">View</a>
+                                    <a href="delete/{{$product->id}}" class="btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
