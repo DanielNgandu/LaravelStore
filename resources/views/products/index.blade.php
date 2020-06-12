@@ -61,12 +61,13 @@
                                 <td>
                                     <a href="/product/edit/{{$product->id}}" class="btn-primary btn-sm">Edit</a>
                                     <a href="/product/show/{{$product->id}}" class="btn-success btn-sm">View</a>
-                                    <a href="/product/delete/{{$product->id}}" class="btn-danger btn-sm">Delete</a>
+                                    <a href="/product/delete/{{$product->id}}" class="btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
                             </tbody>
                         </table>
+                        {!! $products->links() !!}
                     </div>
                 </div>
                 <div class="col-3">
